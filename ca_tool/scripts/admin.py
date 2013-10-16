@@ -41,7 +41,7 @@ class SignRequestOptions(usage.Options):
 class Options(usage.Options):
     synopsis = ""
 
-    optParameters = [['path', 'd', FilePath('ca-data'), 'Path to CA.', FilePath],
+    optParameters = [['path', 'd', FilePath('.ca-data'), 'Path to CA.', FilePath],
                      ]
     subCommands = [['init', '', InitOptions, ''],
                    ['sign-request', '', SignRequestOptions, ''],
