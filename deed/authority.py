@@ -31,7 +31,8 @@ class BadCertificateRequest(Exception):
 def signCertificateRequest(certificateRequest, authority, serial):
     newCert = authority.signRequestObject(
             certificateRequest,
-            serial)
+            serial,
+            digestAlgorithm='sha512')
     log.msg(format='signing certificate for %(name)s: %(digest)s',
             name=certificateRequest.getSubject(), digest=newCert.digest())
     return newCert
@@ -50,7 +51,7 @@ def generateCertificateRequest(key, subjectName):
 def generateSelfSignedCertificate(key, subjectName):
     dn = DistinguishedName(commonName=subjectName)
     req = key.requestObject(dn)
-    cert = key.signRequestObject(dn, req, genSerial(subjectName))
+    cert = key.signRequestObject(dn, req, genSerial(subjectName), digestAlgorithm='sha512')
     return cert
 
 
@@ -144,7 +145,7 @@ class CertificateStore(object):
         if not reqPath.exists():
             raise Exception
         req = CertificateRequest.loadPEM(reqPath.getContent())
-        cert = self.cert.signRequestObject(req, genSerial(subject))
+        cert = self.cert.signRequestObject(req, genSerial(subject), digestAlgorithm='sha512')
         certPath = self.publicPath.child(subject)
         certPath.setContent(cert.dumpPEM())
         certPath.chmod(0644)
