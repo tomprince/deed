@@ -8,7 +8,7 @@ from deed.authority import (
         CertificateStore)
 
 def init(config):
-    path = config['storePath']
+    path = config.parent['path']
     subject = config['subject']
 
     CertificateStore.newStore(path, subject)
