@@ -17,7 +17,7 @@ from twisted.internet.ssl import (
     Certificate, KeyPair, CertificateRequest, PrivateCertificate,
     DistinguishedName)
 
-from ca_tool.interfaces import (
+from deed.interfaces import (
         CertificateNotFound,
     ICertificateStore)
 
@@ -154,7 +154,7 @@ class CertificateStore(object):
 from zope.interface import implementer
 from twisted.internet.endpoints import connectProtocol
 from twisted.protocols.amp import AMP
-from ca_tool.interfaces import (
+from deed.interfaces import (
     ICertificateStore, GetCertificate, SubmitCertificateRequest)
 
 @implementer(ICertificateStore)

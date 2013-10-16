@@ -4,7 +4,7 @@ from twisted.python import usage
 from twisted.internet.defer import maybeDeferred, inlineCallbacks
 from twisted.python.filepath import FilePath
 
-from ca_tool.authority import (
+from deed.authority import (
         generateKey, generateCertificateRequest,
         CertificateStore, RemoteCertificateStore)
 from twisted.internet.ssl import KeyPair
